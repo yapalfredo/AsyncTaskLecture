@@ -7,8 +7,11 @@ import androidx.loader.content.AsyncTaskLoader;
 
 public class BookLoader extends AsyncTaskLoader<String> {
 
-    public BookLoader(Context context) {
+    private String mQueryString;
+
+    BookLoader(Context context, String queryString) {
         super(context);
+        mQueryString = queryString;
     }
 
     @Override
@@ -21,6 +24,6 @@ public class BookLoader extends AsyncTaskLoader<String> {
     @Nullable
     @Override
     public String loadInBackground() {
-        return null;
+        return NetworkUtils.getBookInfo(mQueryString);
     }
 }
